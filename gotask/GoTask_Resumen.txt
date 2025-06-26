@@ -1,0 +1,53 @@
+Resumen de pasos para GoTask
+===========================
+
+1. Estructura del proyecto
+--------------------------
+C:\Users\Usuario\gotask
+│
+├── backend
+│     ├── server.js
+│     ├── models/Task.js
+│     ├── routes/tasks.js
+│     ├── package.json
+│     └── node_modules/
+│
+└── frontend
+      ├── src/
+      │     ├── App.js
+      │     ├── index.js
+      │     └── components/
+      │           ├── TaskForm.js
+      │           └── TaskList.js
+      ├── package.json
+      └── node_modules/
+
+2. Arrancar el backend
+----------------------
+- Abre terminal en C:\Users\Usuario\gotask\backend
+- Ejecuta:
+  npm install
+  node server.js
+  (Asegúrate de tener MongoDB corriendo)
+
+3. Arrancar el frontend
+-----------------------
+- Abre otra terminal en C:\Users\Usuario\gotask\frontend
+- Ejecuta:
+  npm install
+  npm start -- --host 0.0.0.0
+
+4. Ver desde el celular
+-----------------------
+- Averigua la IP local de tu PC (ipconfig)
+- En el navegador del celular, entra a:
+  http://[IP_DE_TU_PC]:3000
+
+5. Tips extra
+-------------
+- Si React o Node muestran errores de dependencias, ejecuta npm install en cada carpeta.
+- Si quieres que el backend sea accesible desde otros dispositivos, cambia en server.js:
+  app.listen(PORT, '0.0.0.0', () => { ... });
+- Si tienes problemas de firewall, permite el acceso cuando Windows lo pida.
+
+¡Éxito con GoTask! 🚀 
