@@ -8,6 +8,9 @@ import './App.css';
 const { Header, Content, Footer } = Layout;
 const { Title } = Typography;
 
+// Cambia esta URL por tu backend desplegado
+const API_URL = 'https://gotask-backend.onrender.com/api';
+
 function App() {
   const [tasks, setTasks] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -15,10 +18,10 @@ function App() {
   const fetchTasks = async () => {
     setLoading(true);
     try {
-      const res = await axios.get('http://localhost:5000/api/tasks');
+      const res = await axios.get(`${API_URL}/tasks`);
       setTasks(res.data);
     } catch (err) {
-      // Manejo de error
+      console.error('Error al obtener tareas:', err);
     }
     setLoading(false);
   };
@@ -29,25 +32,31 @@ function App() {
 
   const addTask = async (task) => {
     try {
-      await axios.post('http://localhost:5000/api/tasks', task);
+      await axios.post(`${API_URL}/tasks`, task);
       fetchTasks();
-    } catch (err) {}
+    } catch (err) {
+      console.error('Error al agregar tarea:', err);
+    }
   };
 
   const toggleTask = async (task) => {
     try {
-      await axios.put(`http://localhost:5000/api/tasks/${task._id}`, {
+      await axios.put(`${API_URL}/tasks/${task._id}`, {
         completed: !task.completed,
       });
       fetchTasks();
-    } catch (err) {}
+    } catch (err) {
+      console.error('Error al actualizar tarea:', err);
+    }
   };
 
   const deleteTask = async (id) => {
     try {
-      await axios.delete(`http://localhost:5000/api/tasks/${id}`);
+      await axios.delete(`${API_URL}/tasks/${id}`);
       fetchTasks();
-    } catch (err) {}
+    } catch (err) {
+      console.error('Error al eliminar tarea:', err);
+    }
   };
 
   return (
